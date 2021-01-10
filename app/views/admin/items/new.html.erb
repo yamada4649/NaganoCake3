@@ -1,0 +1,128 @@
+<div class="container">
+	<div class="row">
+<%= form_with model:@item, url:admin_items_path, local:true do |item| %>
+    <h2><strong>商品新規登録</strong></h2>
+
+		<div class="col-xs-3">
+           <table class="table">
+
+				<tbody>
+					 <tr>
+           </tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-xs-9">
+      <div class="genre_title">
+        <% if @item.errors.any? %>
+   <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= pluralize(@item.errors.count, " prohibit error") %> <%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+			<table class="table">
+				<tbody>
+                    <tr>
+                      <td class="view_box">
+                        <%= item.attachment_field :images_profile_images, multiple: true %>
+                      </td>
+                      <td>
+                       <label>商品名</label> <%= item.text_field :name,:size => "30*260" %>
+
+                      </td>
+                     </tr>
+                     <tr>
+                         <td colspan="1"></td>
+                         <td>
+							            <label style="vertical-align:top;">商品説明</label>
+                          <%= item.text_area :description, class: "text" %>
+                         </td>
+                      </tr>
+                      <tr class="genre-box">
+                         <td colspan="1"></td>
+                         <td>
+                         	<label>ジャンル</label><%= item.collection_select(:genre_id, Genre.where(vail_flag: true),:id,:name, {prompt: "ジャンルを選択して下さい。"}) %>
+                         </td>
+                       </tr>
+                       <tr class="price-box">
+                          <td colspan="1"></td>
+
+                         <td>
+                         	<label>税抜価格</label><font color="red"> <%= item.number_field :notax_price,:size => "30*260" %></font>円
+                         </td>
+                        </tr>
+                        <tr class="sale_box">
+                          <td colspan="1"></td>
+
+                         <td>
+                         	<label for="sale_status">販売ステータス</label>
+                         	<span><%= item.radio_button :sale_status,"true",:size => "30*260",checked: true %> 販売中</span>
+		   	                <span><%= item.radio_button :sale_status, "false",:size => "30*260" %> 販売停止中</span>
+                         </td>
+                        </tr>
+                        <tr>
+                        	<td colspan="1"></td>
+                        	<td>
+                        	<%= item.submit "新規登録", class: "btn btn-primary col-xs-9" %>
+                            </td>
+
+                        </tr>
+
+					<% end %>
+				</tbody>
+
+			</table>
+        </div>
+	</div>
+<img id="preview_0" style="width:15%;">
+<img id="preview_1" style="width:15%;">
+<img id="preview_2" style="width:15%;">
+<img id="preview_3" style="width:15%;">
+<img id="preview_4" style="width:15%;">
+
+<script>
+$('#item_images_profile_images').on('change', function (e) {
+
+    if(e.target.files.length > 5){
+
+      alert('一度に投稿できるのは五枚までです。');
+      // 五枚以上の画像を選択していた場合、選択したファイルをリセット。
+      $('#item_images_profile_images').val = "";
+
+      // 以前の画像のプレビューが残っていた場合は、
+      // まだ画像選択できていると勘違いを誘発するため初期化。
+      for( let i = 0; i < 5; i++) {
+        $(`#preview_${i}`).attr('src', "");
+      }
+
+    }else{
+      let reader = new Array(5);
+
+      // 画像選択を二回した時、一回目より数が少なかったりすると画面上に残るので初期化
+      for( let i = 0; i < 5; i++) {
+        $(`#preview_${i}`).attr('src', "");
+      }
+
+      for(let i = 0; i < e.target.files.length; i++) {
+        reader[i] = new FileReader();
+        reader[i].onload = finisher(i,e);
+        reader[i].readAsDataURL(e.target.files[i]);
+
+        // onloadは別関数で準備しないとfor文内では使用できないので、関数を準備。
+        function finisher(i,e){
+          return function(e){
+          $(`#preview_${i}`).attr('src', e.target.result);
+          }
+        }
+      }
+   }
+});
+</script>
+</div>
+<div class="file">
+  
+</div>
+<%= javascript_include_tag 'image.js' %>

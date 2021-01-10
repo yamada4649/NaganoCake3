@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="row">
+    <h2><strong>注文情報確認</strong></h2>
+   <%= form_with model: @order, local: true do |f| %>
+    <div class="col-xs-6">
+
+
+
+    	<table  align="left" class="table table-striped">
+
+    		<thead>
+
+
+    		<tr>
+　　          <th>商品名</th>
+　　          <th>単価（税込み）</th>
+              <th>数量</th>
+
+              <th>小計</th>
+　             <th></th>
+            </tr>
+        </thead>
+
+          <tbody>
+            <% @sum = 0 %>
+
+            <% @cart_items.each do |cart_item| %>
+
+
+　           <tr>
+
+　　           <td>
+                 <%= attachment_image_tag cart_item.item,:product_image, size:"100x100", format:"jpeg", fallback: "no_image.jpg" %><br>
+	               <strong><%= cart_item.item.name %></strong>
+               </td>
+	            <td><%= (cart_item.item.notax_price*1.10).to_i %>円</td>
+               <td><%= cart_item.amount %>個</td>
+               <td><%= (cart_item.item.notax_price*1.10).to_i * cart_item.amount.to_i %>円</td>
+               <td><% @sum += (cart_item.item.notax_price*1.10).to_i * cart_item.amount.to_i %></td>
+
+　           </tr>
+          <% end %>
+　         </tbody>
+    	</table>
+    </div>
+
+
+
+
+    <div class="row">
+    <div class="col-xs-4">
+      <table class="table table-bordered">
+        <tbody>
+
+          <tr>
+            <th>送料</th>
+            <td><%= @order.freight %>円</td>
+            <%= f.hidden_field :freight, value: @order.freight %>
+          </tr>
+          <tr>
+            <th>商品合計</th>
+            <td><%= @sum %>円</td>
+          </tr>
+          <tr>
+            <th>請求金額</th>
+            <td><%= @order.total_due = (@sum += @order.freight) %>円</td>
+            <%= f.hidden_field :total_due, value: @order.total_due %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+
+    	<div class="paymthod">
+        <h3><strong>支払い方法</strong></h3><span><%= @order.payment_method_i18n %></span>
+    	</div>
+    	<div class="ship-to">
+        <h3><strong>お届け先 </strong></h3>
+         <%= @order.postal_code %>
+         <%= @order.address %>
+         <%= @order.addressee %>
+        <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+        <%= f.hidden_field :postal_code, value: @order.postal_code %>
+        <%= f.hidden_field :address, value: @order.address %>
+        <%= f.hidden_field :addressee, value: @order.addressee %><br>
+        <div style="margin-left: 90px;">
+          <%= f.submit '情報入力に進む',"data-confirm" => "注文確定してよろしいでしょうか？",class: 'btn-sm btn-success' %>
+
+        </div>
+
+    	</div>
+      <% end %>
+    </div>
+  </div>

@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="top-message col-md-offset-2 col-md-8">
+      <% if flash[:succsess] %>
+      <div class="alert alert-info">
+        <%= flash[:succsess] %>
+      </div>
+    <% end %>
+     <table>
+      <h2>注文履歴詳細</h2>
+       <tbody>
+          <tr>
+            <th>購入者</th>
+            <td><%= @order.end_user.first_name + @order.end_user.last_name %></td>
+          </tr>
+          <tr>
+            <th>配送先</th>
+            <td>〒<%= @order.postal_code %> <%= @order.address %> <%=  @order.addressee %></td>
+          </tr>
+          <tr>
+            <th>支払い方法</th>
+            <td><%= @order.payment_method_i18n %></td>
+          </tr>
+          <tr>
+            <th>注文ステータス</th>
+            <td>
+              <%= form_with model:@order, url: admin_order_path, local:true do |f| %>
+              <%= f.select :order_status,Order.order_statuses_i18n.invert, {}, placeholder: 0 %>
+              <%= f.submit '更新',class:"btn btn-primary" %>
+              <% end %>
+            </td>
+          </tr>
+       </tbody>
+      </table>
+      <table class="table table-striped">
+    		<thead>
+               <tr>
+                <th>商品名</th>
+                <th>単価（税込み）</th>
+                <th>数量</th>
+                <th>小計</th>
+                <th>制作ステータス</th>
+                </tr>
+        </thead>
+				<tbody>
+					<% @sum = 0 %>
+
+					 <% @order_item.each do |orders| %>
+					<tr>
+						<td><%= orders.item.name %></td>
+						<td><%= (orders.price*1.10).to_i %>円</td>
+						<td><%= orders.amount %></td>
+						<td> <%= (orders.price*1.10).to_i * orders.amount.to_i %>円<% @sum += (orders.price*1.10).to_i * orders.amount.to_i %></td>
+            <td>
+                <%= form_for(orders,url:  admin_order_detail_path(orders)) do |f| %>
+                <%= f.select :production_status,OrdersDetail.production_statuses_i18n.invert, {}, placeholder: 0 %>
+                <%= f.submit '更新',class:"btn btn-primary" %>
+                <% end %>
+            </td>
+					</tr>
+					<% end %>
+				</tbody>
+         <div class="pull-right">
+          <div class="sum">
+            <span class="font-weight-bold"><strong>商品合計</strong></span><span style="color: red; margin-left: 30px;"><%= @sum %>円</span>
+          </div>
+          <div class="freight">
+            <span><strong>送料</strong></span><span style="color: red; margin-left: 65px;"><%= @order.freight %>円</span>
+          </div>
+          <div class="sum-price">
+                 <span><strong>請求金額合計</strong></span><span style="color: red"><%= @order.total_due %>円</span>
+          </div>
+        </div>
+     </div>
+   </div>
+</div>

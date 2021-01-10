@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+     <% if @address.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @address.errors.full_messages.each do |message| %>
+        <li><%= pluralize(@address.errors.count, " prohibit error") %> <%= message %></li>
+      <% end %>
+    </ul>
+    </div>
+     <% end %>
+    <div class="top-message col-md-offset-1 col-md-10">
+       <%= form_with model: @order, url:  orders_confirm_path, method: :post,local: true do |f| %>
+        <div class="payment">
+    		<h3><strong>支払い方法</strong></h3>
+    		<label style="margin-left: 60px;"><%= f.collection_radio_buttons :payment_method, Order.payment_methods_i18n, :first, :last %></label><br>
+    	 </div>
+         <h3><strong>お届け先</strong></h3>
+      <div class="my-address">
+         <label style="margin-left: 60px;"><%= f.radio_button :address_option,0, checked: true %>ご自身の住所</label><br><!-- ご自身の住所 address_optionは好きな名前でよい -->
+         <label style="margin-left: 250px;"><%= current_end_user.postal_code %> <%= current_end_user.address %>
+         <%= current_end_user.first_name %><%= current_end_user.last_name %>
+         </label>
+
+      </div><!-- f.collection_select :job_id, @addresse, :id, "〒#{self.postal_code} #{self.address} #{self.name}" -->
+      <div class="my-sub-address">
+         <label style="margin-left: 60px;">
+          <%= f.radio_button :address_option,1 %>登録済み住所から選択<!-- 登録済み住所から選択,:idでaddress_idにデータを渡している。 -->
+         </label>
+         <label style="margin-left: 60px;"></label><br>
+         <span style="margin-left: 270px;"><%= f.collection_select :addresss_id, Address.where(end_user_id: current_end_user.id), :id,:address_all %></span>
+      </div>
+      <div class="new-address">
+        <label style="margin-left: 60px;">
+        <%= f.radio_button :address_option,2%>#新規住所
+        </label><br>
+      <div style="margin-left:150px ">
+        <label style="margin-left: 60px;">郵便番号</label>
+        <%= f.text_field :postal_code,placeholder: "郵便番号", :size => "30*30" %><br>
+        <label style="margin-left: 90px;">住所</label>
+        <%= f.text_field :ship_address,placeholder: "住所", :size => "30*30" %><br>
+        <label style="margin-left: 60px;">宛名住所</label>
+        <%= f.text_field :ship_toname,placeholder: "宛名", :size => "30*30" %>
+       <div style="margin-left: 320px;">
+           <%= f.submit '確認画面へ進む', class:"btn btn-primary text-cenrer"%>
+      </div>
+      </div>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+	<div class="row">
+		<div class="top-message col-md-offset-1 col-md-10">
+		   <div class="genre_title">
+		   	<h3>ジャンル編集</h3>
+		   </div>
+		   <% if @genre.errors.any? %>
+           <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <% @genre.errors.full_messages.each do |message| %>
+               <li><%= pluralize(@genre.errors.count, " prohibit error") %> <%= message %></li>
+           <% end %>
+            </ul>
+           </div>
+           <% end %>
+		   <div class="genre_submit">
+             <%= form_with model:@genre, url:admin_genre_path, local:true do |f| %>
+		   	 <span><label>ジャンル</label></span>
+		    <span><%= f.text_field :name %></span>
+		   	<span><label><%= f.radio_button :vail_flag, "true" %> 有効</label></span>
+		   	<span><label><%= f.radio_button :vail_flag, "false" %> 無効</label></span>
+		    <span><%= f.submit "変更を保存する",class:"btn btn-primary" %></span>
+		   <% end %>
+		   </div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="top-message col-md-offset-1 col-md-10">
+         <h3><strong>配送先登録/一覧</strong></h3>
+            <%= form_for(@addresse) do |f| %>
+           <div class="postal_code">
+	         <span>郵便番号（ハイフンなし）</span>
+	         <span><%= f.text_field :postal_code %> </span>
+           </div>
+           <div class="ship_address">
+	         <span class="address">住所</span>
+	         <span style="margin-left:140px "><%= f.text_field :ship_address %> </span>
+            </div> 
+           <div class="ship_toname">
+	         <span class="address">宛名</span>
+	         <span style="margin-left:140px "><%= f.text_field :ship_toname%></span>
+
+           </div>
+           <div style="margin-left:280px ">
+           	    <%= f.submit '編集する', class:"btn btn-primary" %>
+
+           </div>
+            <% end %>
+    </div>        
+  </div>
+</div>

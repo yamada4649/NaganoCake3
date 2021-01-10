@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="top-message col-md-offset-1 col-md-10">
+       <div class="col-xs-5 col-xs-offset-1">
+        <% if @address.errors.any? %>
+         <h4 class="errors-message">
+         <strong>項目が記入されてない箇所があります。</strong>
+       </h4>
+       <div id ="error_explanation" class="alert alert-danger">
+        <ul>
+          <% @address.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+      </div>
+      <div>
+         <h3>配送先登録/一覧</h3>
+            <%= form_for(@address) do |f| %>
+           <div class="postal_code">
+	         <span>郵便番号（ハイフンなし）</span>
+	         <span><%= f.text_field :postal_code,placeholder: "郵便番号", :size => "30*30" %> </span>
+           </div>
+           <div class="ship_address">
+	         <span class="address">住所</span>
+	         <span  style="margin-left:140px;"><%= f.text_field :ship_address,placeholder: "住所", :size => "30*30" %> </span>
+            </div>
+           <div class="ship_toname">
+	         <span class="address">宛名</span>
+	         <span style="margin-left:140px;"><%= f.text_field :ship_toname,placeholder: "宛名", :size => "30*30" %></span>
+             <%= f.submit '登録', class:"btn btn-primary" %>
+
+           </div>
+           <div class="top-message col-md-offset-5 col-md-2">
+           	   
+           </div>
+            <% end %>
+      </div>
+<table class="table  table-striped">
+    		<thead>
+               <tr>
+                <th>郵便番号</th>
+                <th width=”60%″>住所</th>
+                <th>宛名</th>
+                <th colspan="2"></th>
+                </tr>
+              </thead>
+				<tbody>
+                 
+                  <% @addresses.each do |addresses| %>
+                  <tr>
+                    <td>
+           	          <%= addresses.postal_code %>
+
+                    </td>
+                    <td>
+
+                    	<%= addresses.ship_address %>
+                    </td>
+                    <td>
+                    	<%= addresses.ship_toname %>
+                    </td>
+                    <td>
+                    	<%= link_to '編集する', edit_address_path(addresses.id), class: 'btn-sm btn-primary' %>
+                    	<%= link_to '削除する', address_path(addresses.id), class: 'btn-sm btn-danger',method: :delete,"data-confirm" =>"本当に空にしてもよろしいでしょうか?" %>
+
+                    </td>
+                  </tr>
+
+                    <% end %>
+                </tbody>
+        </table>
+</div>
+</div>
+</div>

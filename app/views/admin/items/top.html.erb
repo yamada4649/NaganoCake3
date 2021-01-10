@@ -1,0 +1,40 @@
+<div class="container">
+ <div class="row">
+  <div class="top-message col-md-offset-2 col-md-8">
+    <div id="test-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+
+  <!-- 何枚目かの画像かを表すインディケーター -->
+  <ol class="carousel-indicators">
+    <li data-target="#test-carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#test-carousel" data-slide-to="1" class=""></li>
+    <li data-target="#test-carousel" data-slide-to="2" class=""></li>
+  </ol>
+
+  <!-- 実際の画像の表示処理 -->
+  <div class="carousel-inner">
+    <div class="item active">    <!-- activeをつけたものがページ表示時に表示される -->
+ <div style="background-image: url(<%= asset_path "cake.jpg" %>); height: 500px; background-size: cover;"></div>
+    </div>
+    <div class="item">
+       <div style="background-image: url(<%= asset_path "cake2.jpg" %>); height: 500px; background-size: cover;"></div>
+    </div>
+    <div class="item">
+      <div style="background-image: url(<%= asset_path "image1.jpg" %>); height: 500px; background-size: cover;"></div>
+    </div>
+  </div>
+
+  <!-- 前の画像へ戻るための矢印ポインタ -->
+  <a class="left carousel-control" href="#test-carousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+
+  <!-- 次の画像へ進むための矢印ポインタ -->
+  <a class="right carousel-control" href="#test-carousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>
+</div>
+ 
+  </div>
+   
+ </div>

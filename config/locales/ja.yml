@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    attributes:
+  enums:
+    orders_detail:
+      production_status:
+        block_phone: "着手不可"
+        wait_product: "制作待ち"
+        producting: "制作中"
+        complete_product: "制作完了"
+    order:
+      payment_method:
+        creditcard: "クレジットカード"
+        bank: "銀行振込み"
+        pay_pay: "pay-pay決済"
+      order_status:
+        wait_money: "入金待ち"
+        confirm_money: "入金確認"
+        product: "制作中"
+        ready_toship: "発送準備中"
+        complete_ship: "発送済み"

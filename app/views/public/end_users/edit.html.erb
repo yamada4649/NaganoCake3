@@ -1,0 +1,71 @@
+<div class="container">
+	<div class="row">
+		<div class="top-message col-md-offset-1 col-md-6">
+      <%= form_for(@end_user, url: end_user_path(@end_user), method: :patch) do |end_user| %>
+
+			<table class="table">
+    <thead>
+      <tr>
+            <th><h3>登録情報編集</h3></th>
+            <th colspan="3"></th>
+      </tr>
+               </thead>
+               <tbody>
+               	<tr>
+               		<td class="title">
+               			氏名
+               		</td>
+               		<td>
+                    <div style="display: inline-block;">
+                    <%= end_user.text_field :first_name %>
+                    <%= end_user.text_field :last_name %>
+
+                    </div>
+
+
+               		</td>
+               	 </tr>
+               	 <tr>
+               	 	<td class="title">
+               	 		カナ
+               	 	</td>
+               		<td>
+               		    <%= end_user.text_field :first_name_kana %>
+               			<%= end_user.text_field :last_name_kana %>
+
+               		</td>
+               	</tr>
+               	<tr>
+               		<td class="title">郵便番号</td>
+               		<td><%= end_user.text_field :postal_code %></td>
+               	</tr>
+               	<tr>
+               		<td class="title">
+               			住所
+               		</td>
+               		<td><%= end_user.text_field :address %></td>
+               	</tr>
+               	<tr>
+               		<td class="title">電話番号</td>
+               		<td><%= end_user.text_field :phone %></td>
+               	</tr>
+               	<tr>
+               		<td class="title">メールアドレス</td>
+               		<td><%= end_user.text_field :email %></td>
+               	</tr>
+                <tr>
+                  <td>
+                  <%= end_user.submit '編集内容を保存する', class:"btn btn-primary col-xs-12" %>
+                  <%= link_to '退会する', new_end_user_path,class: "btn btn-danger col-xs-12" %>
+
+
+                  </td>
+                </tr>
+
+               </tbody>
+              </table>
+                  <% end %>
+
+		</div>
+   </div>
+</div>

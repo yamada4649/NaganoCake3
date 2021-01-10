@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row" style="margin-top: 100px;">
+    <div class="col-xs-8">
+
+      <div>
+       <p class="title"><strong>長野ケーキへようこそ！！</strong></p>
+       <p class="2"><strong>あなたにとっての幸せなケーキが見つかりますように💛</strong></p>
+      </div>
+       <div class="login-title">
+        <div>
+        <%= link_to '会員登録', new_end_user_registration_path,class: "btn btn-success" %>
+        <%= link_to 'ログイン',  new_end_user_session_path,class: "btn btn-success" %>
+      </div>
+       </div>
+       <div class="containerr">
+      <div id="theTarget">
+        <div style="background-image: url(<%= asset_path "cake.jpg" %>); height: 500px;  background-size: 100% 100%;"></div>
+        <div style="background-image: url(<%= asset_path "cake2.jpg" %>); height: 500px;  background-size: 100% 100%;"></div>
+        <div style="background-image: url(<%= asset_path "image1.jpg" %>); height: 500px;  background-size: 100% 100%;"></div>
+        <div style="background-image: url(<%= asset_path "image2.jpg" %>); height: 500px;  background-size: 100% 100%;"></div>
+      </div>
+    </div>
+
+    </div>
+    <div class="col-xs-4">
+      <div class="top-message col-md-offset-1 col-md-10">
+        <h1><strong>商品名検索一覧</strong></h1>
+        <div class="contents">
+          <%= text_field_tag :name,'', class: 'js-text_field', placeholder: 'タイトルを入力してください' %>
+          <ul class="js-messages">
+             <%= render partial: 'item_message',locals: { items: @items } %><!-- 部分テンプレートを呼び出し-->
+          </ul>
+        </div>
+        <div class="genre-title">
+          <h3><strong>ジャンルの検索</strong></h3>
+          <div id="humberger" style="display: inline-block;">
+          <div></div>
+          <div></div>
+          <div></div>
+          </div>
+          <div class="icon-animation type-1">
+           <span class="top"></span>
+           <span class="middle"></span>
+           <span class="bottom"></span>
+          </div>
+        </div>
+        <div id="sp-menu">
+          <ul>
+            <% @genres.each do |genres| %>
+            <li>
+              <% if genres.vail_flag %>
+                <%= link_to genre_path(genres) do %>
+                    <h3 style="margin: 0 auto"><strong><%= genres.name %></strong></h3>
+                <% end %>
+                <% end %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <span id="back">
+      <a href="#">
+        <%= image_tag 'arrow.png' %>
+      </a>
+    </span>
+  </div>
+</div>
+
+<%= javascript_include_tag 'fuga.js' %>

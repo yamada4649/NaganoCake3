@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="top-message col-md-offset-3 col-md-6">
+
+    	<table class="table">
+				<tbody>
+                    <tr>
+                      <td class="item-picture">
+                         <%= attachment_image_tag @item, :product_image, :fill, 300,300,format:"jpeg", fallback:"no_image.jpg" %>
+                      </td>
+
+                      <td>
+                      	<strong><%= @item.name %></strong>
+                        <div style="margin-top: 10px">
+                      	 <strong><%= @item.description %></strong>
+                      	</div>
+                      </td>
+                    </tr>
+                    <tr>
+                    	<td colspan="1"></td>
+                    	<td style="color: red">￥<%= (@item.notax_price*1.10).to_i%>円(税込み)</td>
+                    </tr>
+                    <tr>
+                       <%= form_with model: @cart_item, local:true do |f| %>
+
+                    	<td>
+                         <strong class=" alert-danger"><%= notice %></strong>
+                        <%= f.select :amount,[["1", "1"], ["2", "2"],  ["3", "3"], ["4", "4"],["5", "5"]] , :prompt => "個数を選択してください" %> 個
+                      </td>
+
+                    	<td>
+                        <%= f.submit "カートに入れる",class:"btn btn-primary" %>
+                        <%= f.hidden_field :item_id, value: @item.id %>
+                      </td>
+                          <% end %>
+
+                    </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
