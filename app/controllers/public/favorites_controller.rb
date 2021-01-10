@@ -1,6 +1,6 @@
 class Public::FavoritesController < ApplicationController
 	def create
-		 @item = Item.find(params[:item_id])
+		 @item = Item.find(params[:item_id])#うまくidがとってこれない件について
 		 favorite = @item.favorites.new(end_user_id: current_end_user.id)
 		 favorite.save
 		 redirect_to request.referer
