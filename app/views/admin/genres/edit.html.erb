@@ -16,6 +16,7 @@
 		   <div class="genre_submit">
              <%= form_with model:@genre, url:admin_genre_path, local:true do |f| %>
 		   	 <span><label>ジャンル</label></span>
+		   	<span><%= f.attachment_field :image %></span>
 		    <span><%= f.text_field :name %></span>
 		   	<span><label><%= f.radio_button :vail_flag, "true" %> 有効</label></span>
 		   	<span><label><%= f.radio_button :vail_flag, "false" %> 無効</label></span>

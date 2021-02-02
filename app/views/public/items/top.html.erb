@@ -1,63 +1,41 @@
-<div class="container">
+<div class="containerr">
+      <div id="theTarget">
+        <div style="background-image: url(<%= asset_path "main_top_03.jpg" %>);">
+        </div>
+        <div style="background-image: url(<%= asset_path "itigo-cake.jpg" %>);"></div>
+        <div style="background-image: url(<%= asset_path "taruto.jpg" %>);"></div>
+        <div style="background-image: url(<%= asset_path "tarutoyoko.jpg" %>)"></div>
+        <div style="background-image: url(<%= asset_path "image2.jpg" %>);"></div>
+      </div>
+</div>
+<body style="background-color: black; color: white; ">
+  <div class="container">
   <div class="row" style="margin-top: 100px;">
-    <div class="col-xs-8">
-
-      <div>
-       <p class="title"><strong>長野ケーキへようこそ！！</strong></p>
-       <p class="2"><strong>あなたにとっての幸せなケーキが見つかりますように💛</strong></p>
+    <div class="col-xs-12">
+      <div class="sub-picture">
+        <div class="table-picture">
+          
+        </div>
+       <p class="title" style="text-align: center;"><strong>ジャンルの選択</strong></p>
+       <p class="2" style="text-align:center ;"><strong>当店のラインナップはこちら💛</strong></p>
       </div>
        <div class="login-title">
         <div>
         <%= link_to '会員登録', new_end_user_registration_path,class: "btn btn-success" %>
         <%= link_to 'ログイン',  new_end_user_session_path,class: "btn btn-success" %>
-      </div>
+        </div>
        </div>
-       <div class="containerr">
-      <div id="theTarget">
-        <div style="background-image: url(<%= asset_path "cake.jpg" %>); height: 500px;  background-size: 100% 100%;"></div>
-        <div style="background-image: url(<%= asset_path "cake2.jpg" %>); height: 500px;  background-size: 100% 100%;"></div>
-        <div style="background-image: url(<%= asset_path "image1.jpg" %>); height: 500px;  background-size: 100% 100%;"></div>
-        <div style="background-image: url(<%= asset_path "image2.jpg" %>); height: 500px;  background-size: 100% 100%;"></div>
-      </div>
-    </div>
+       <div class="genres-item" style="text-align: center;">
+         <% @genres.each do |genres| %>
+          <div class= "genre-image"style="display: inline-block; margin-left: 30px;">
+            <%= attachment_image_tag genres, :image, :fill, 300,300 %>
+          <div class="genre-name">
+             <%= genres.name %>
+          </div>
+          </div>
+          <% end %>
+       </div>
 
-    </div>
-    <div class="col-xs-4">
-      <div class="top-message col-md-offset-1 col-md-10">
-        <h1><strong>商品名検索一覧</strong></h1>
-        <div class="contents">
-          <%= text_field_tag :name,'', class: 'js-text_field', placeholder: 'タイトルを入力してください' %>
-          <ul class="js-messages">
-             <%= render partial: 'item_message',locals: { items: @items } %><!-- 部分テンプレートを呼び出し-->
-          </ul>
-        </div>
-        <div class="genre-title">
-          <h3><strong>ジャンルの検索</strong></h3>
-          <div id="humberger" style="display: inline-block;">
-          <div></div>
-          <div></div>
-          <div></div>
-          </div>
-          <div class="icon-animation type-1">
-           <span class="top"></span>
-           <span class="middle"></span>
-           <span class="bottom"></span>
-          </div>
-        </div>
-        <div id="sp-menu">
-          <ul>
-            <% @genres.each do |genres| %>
-            <li>
-              <% if genres.vail_flag %>
-                <%= link_to genre_path(genres) do %>
-                    <h3 style="margin: 0 auto"><strong><%= genres.name %></strong></h3>
-                <% end %>
-                <% end %>
-            </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
     </div>
 
     <span id="back">
@@ -69,3 +47,6 @@
 </div>
 
 <%= javascript_include_tag 'fuga.js' %>
+<%= javascript_include_tag 'item.js' %>
+
+</body>

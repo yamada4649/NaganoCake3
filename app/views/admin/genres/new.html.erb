@@ -17,7 +17,10 @@
         <%= form_with model:@genre, url:admin_genres_path, local:true do |f| %>
         <div style="display: inline-block;">
 		   	 	<label><strong>ジャンル</strong></label>
-		   	 </div>
+		   	</div>
+        <div class="genre-image">
+          <%= f.attachment_field :image %>
+        </div>
 		    <div style="display: inline-block;">
 		    	<%= f.text_field :name %>
 		    	
@@ -41,6 +44,7 @@
 		   	 <table class="table table-hover">
        <thead>
       <tr>
+        <th colspan="1"></th>
        <th>ジャンル</th>
        <th>状態</th>
        <th colspan="3"></th>
@@ -50,6 +54,9 @@
         <% @genres.each do |genres| %>
 
         <tr>
+          <td>
+            <%= attachment_image_tag genres, :image, :fill, 100,100 %>
+          </td>
           <td>
             <%= genres.name %>
           </td>
@@ -62,6 +69,7 @@
           <td>
            <%= link_to '編集', edit_admin_genre_path(genres.id),class:"btn btn-primary" %>
           </td>
+          <td><%= link_to '削除',admin_genre_path(genres.id),method: :delete,class:"btn btn-danger" %></td>
         </tr>
         <% end %>
       </tbody>

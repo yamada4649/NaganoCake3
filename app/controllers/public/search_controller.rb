@@ -6,6 +6,24 @@ class Public::SearchController < ApplicationController
     @method = params["search"]["metho"]
     @records = search_for(@model, @content, @method)#この順番により、search_forの値が上下する。
   end
+  def 
+    number1 = gets.chomp.to_i length: { in: 0..100 }
+    nuber2 = gets.chomp.to_i length: { in: 0..100 }
+    if (number1 - number2) < 3
+       if number1 - number2 = 1
+         number1 += 3
+         print "Yes"
+         
+       end
+       if numbermin = 2
+        number1 += 3
+         print "Yes"
+       end
+    else number1 > number2
+       print "No"
+
+    end
+  end
 
   private
   def search_for(model, content, method)

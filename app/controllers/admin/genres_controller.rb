@@ -6,6 +6,12 @@ class Admin::GenresController < ApplicationController
 	def edit
 	@genre = Genre.find(params[:id])
 	end
+  def destroy
+    @genre = Genre.find(params[:id])
+    @genre.destroy
+    redirect_to new_admin_genre_path
+    
+  end
 	def create
 	   @genre = Genre.new(genre_params)
   	if @genre.save
@@ -26,6 +32,6 @@ class Admin::GenresController < ApplicationController
     end
 	private
     def genre_params
-      params.require(:genre).permit(:name, :vail_flag)
+      params.require(:genre).permit(:name, :vail_flag,:image)
     end
 end
