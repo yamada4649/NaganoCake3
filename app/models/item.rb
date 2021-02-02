@@ -7,8 +7,8 @@ class Item < ApplicationRecord
    accepts_attachments_for :images, attachment: :profile_image
    belongs_to :genre
    attachment :product_image
-   def favorited_by?(user)
-       favorites.where(end_user_id: user.id).exists?
+   def favorited_by?(item)
+       favorites.where(item_id: item.id).exists?
     end
    validate :name,:description,:notax_price,:genre_id
 end

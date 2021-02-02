@@ -18,10 +18,11 @@
   transition-duration: 0.5s;
 }
 .title{
-  color: green;/*文字色*/
+  font-size:30px;
+  color:#E0861A;
   padding: 0.5em 0;/*上下の余白*/
-  border-top: solid 3px green;/*上線*/
-  border-bottom: solid 3px green;/*下線*/
+  border-top: solid 3px #E0861A;/*上線*/
+  border-bottom: solid 3px #E0861A;/*下線*/
 }
 .login-title{
  text-align:center;
@@ -56,4 +57,15 @@
 }
 #humberger div:nth-of-type(3) {
   bottom: 4px;
+}
+.skippr {
+  height: 600px !important;
+}
+.skippr .div {
+  object-fit: contain !important;
+  height : auto !important;
+}
+.genre-name {
+  font-weight: 700;
+  background-color:orange;
 }

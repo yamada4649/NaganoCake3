@@ -15,10 +15,10 @@
             <td><%= attachment_image_tag images, :profile_image, :fill, 300,300 %></td>
             <% end %>
             <td style="display: block; text-align: center;"><strong>商品名:<%= genre_items.name %></strong></td>
-            <td><% if genre_items.favorited_by?(current_end_user) %>
-                  <%= link_to genre_items.favorites.count, item_favorites_path(genre_items), method: :delete, remote: true, class: "glyphicon glyphicon-heart" %>
+            <td><% if genre_items.favorited_by?(genre_items) %>
+                  <%= link_to genre_items.favorites.count, item_favorites_path(genre_items), method: :delete, class: "glyphicon glyphicon-heart" %>
                 <% else %>
-                <%= link_to genre_items.favorites.count, item_favorites_path(genre_items), method: :post, remote: true, class: "glyphicon glyphicon-heart-empty" %>
+                <%= link_to genre_items.favorites.count, item_favorites_path(genre_items), method: :post, class: "glyphicon glyphicon-heart-empty" %>
                 <% end %>
             </td>
           </tr>
@@ -27,4 +27,4 @@
       </table>
     </div>
   </div>
-  <%= javascript_include_tag 'fuga.js' %>
+  
