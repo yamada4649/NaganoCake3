@@ -7,7 +7,8 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   			when Admin
     			admin_items_top_path
 			when EndUser
-				end_user_path
+				root_path
+				#end_user_path
 			end
 	end
 	def after_sign_out_path_for(resource)

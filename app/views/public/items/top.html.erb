@@ -16,7 +16,7 @@
         <div class="table-picture">
           
         </div>
-       <p class="title" style="text-align: center;"><strong>ジャンルの選択</strong></p>
+       <p class="title" style="text-align: center; font-family: 'Kaushan Script', cursive;"><strong>Select Genre</strong></p>
        <p class="2" style="text-align:center ;"><strong>当店のラインナップはこちら💛</strong></p>
       </div>
        <div class="login-title">
@@ -25,18 +25,23 @@
         <%= link_to 'ログイン',  new_end_user_session_path,class: "btn btn-success" %>
         </div>
        </div>
-       <div class="genres-item" style="text-align: center;">
-         <% @genres.each do |genres| %>
-          <div class= "genre-image"style="display: inline-block; margin-left: 30px;">
-            <%= attachment_image_tag genres, :image, :fill, 300,300 %>
-          <div class="genre-name">
+       <% @genres.each do |genres| %>
+          <div class="genres-item" style="display: inline-block;">
+          <div class= "genre-image">
+             <%= link_to genre_path(genres),method: :get do %>
+               <%= attachment_image_tag genres, :image, :fill, 370,370 %>
+             <% end %>
+             <figcaption>
+               <h2>店長おすすめ</h2>
+               <p>Nothing I do is my fault. </p>
+             </figcaption><a href="#"></a>
+          <div class="genre-name" style="text-align: center;">
              <%= genres.name %>
           </div>
           </div>
-          <% end %>
        </div>
-
-    </div>
+         <% end %>
+   </div>
 
     <span id="back">
       <a href="#">

@@ -1,30 +1,26 @@
 
 <div class="container">
   <div class="row">
-    <div class="top-message col-md-offset-3 col-md-6">
-      <table>
-        <thead>
-          <tr class="genre-title">
-            <th><h3><strong><%= @genre.name %>の紹介</strong></h3></th>
-          </tr>
-        </thead>
+      <div style="margin-top: 30px;">
         <% @genre.items.each do |genre_items| %>
-        <tbody>
-          <tr style="display: inline-block; margin-right: 30px;">
-            <% genre_items.images.each do |images| %>
-            <td><%= attachment_image_tag images, :profile_image, :fill, 300,300 %></td>
-            <% end %>
-            <td style="display: block; text-align: center;"><strong>商品名:<%= genre_items.name %></strong></td>
-            <td><% if genre_items.favorited_by?(genre_items) %>
-                  <%= link_to genre_items.favorites.count, item_favorites_path(genre_items), method: :delete, class: "glyphicon glyphicon-heart" %>
-                <% else %>
-                <%= link_to genre_items.favorites.count, item_favorites_path(genre_items), method: :post, class: "glyphicon glyphicon-heart-empty" %>
-                <% end %>
-            </td>
-          </tr>
-        </tbody>
-        <% end %>
-      </table>
-    </div>
+               <div class="item-image" style="display: inline-block; margin-left: 40px;">
+                 <% genre_items.images.each do |images| %>
+                 <%= link_to item_path(images.item),method: :get do %>
+                 <%= attachment_image_tag images, :profile_image, :fill, 300,300 %>
+                 <% end %>
+                 <% end %>
+                 <div style="text-align: center;">
+                    <strong><%= genre_items.name %></strong>
+                      <% if genre_items.favorited_by?(genre_items) %>
+                     <%= link_to genre_items.favorites.count, item_favorites_path(genre_items), method: :delete, class: "glyphicon glyphicon-heart" %>
+                      <% else %>
+                     <%= link_to genre_items.favorites.count, item_favorites_path(genre_items), method: :post, class: "glyphicon glyphicon-heart-empty" %>
+                     <% end %>
+                 </div>
+               </div>
+              <span>
+              </span>
+          <% end %>
+      </div>
   </div>
-  
+</div>
