@@ -27,7 +27,7 @@
        </div>
        <% @genres.each do |genres| %>
           <div class="genres-item" style="display: inline-block;">
-          <div class= "genre-image">
+          <div class= "genre-image" id=<%= "genre__favorite--" + genres.id.to_s %>>
              <%= link_to genre_path(genres),method: :get do %>
                <%= attachment_image_tag genres, :image, :fill, 370,370 %>
              <% end %>

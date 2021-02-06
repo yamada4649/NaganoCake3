@@ -9,7 +9,7 @@
                  <%= attachment_image_tag images, :profile_image, :fill, 300,300 %>
                  <% end %>
                  <% end %>
-                 <div style="text-align: center;">
+                 <div class="genre_items" style="text-align: center;">
                     <strong><%= genre_items.name %></strong>
                       <% if genre_items.favorited_by?(genre_items) %>
                      <%= link_to genre_items.favorites.count, item_favorites_path(genre_items), method: :delete, class: "glyphicon glyphicon-heart" %>
