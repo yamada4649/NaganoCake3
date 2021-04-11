@@ -1,11 +1,11 @@
 <div class="container">
 <div class="row">
      <h3><strong>商品一覧（全件）</strong></h3>
-
-     <% @genres.each do |genres| %>
+     <div>
+       <% @genres.each do |genres| %>
      <% genres.items.each do |genre_items| %>
      <% genre_items.images.each do |images| %>
-     <div style=" display: inline-block;">
+  <div id="<%= "item_list_" + images.id.to_s %>">
 
            <div id="img_wrap">
             <%= link_to item_path(images.item) do %>
@@ -14,17 +14,20 @@
            </div>
              
            
-           	<div style="text-align: center;">
-           	<strong><%= genre_items.name %></strong>
+            <div style="text-align: center;">
+            <strong><%= genre_items.name %></strong>
            </div>
            <div style="color: red; text-align: right; font-size: 20px;">
             <strong><%= images.item.notax_price%>円</strong>
-           	</div>
+            </div>
 
-     </div> 
+     </div>
+       <% end %>
             <% end %>
             <% end %>
-            <% end %>
+     </div>
+   
+          
 
 </div>
 </div>

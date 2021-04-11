@@ -69,3 +69,4 @@ gem "refile-mini_magick"
 gem 'enum_help'
 gem 'rails-i18n'
 gem 'carrierwave'
+gem 'font-awesome-sass', '~> 5.13'

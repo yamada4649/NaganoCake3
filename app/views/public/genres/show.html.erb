@@ -12,9 +12,17 @@
                  <div class="genre_items" style="text-align: center;">
                     <strong><%= genre_items.name %></strong>
                       <% if genre_items.favorited_by?(genre_items) %>
-                     <%= link_to genre_items.favorites.count, item_favorites_path(genre_items), method: :delete, class: "glyphicon glyphicon-heart" %>
+                     <%= link_to  item_favorites_path(genre_items), method: :delete do %>
+                     <span class="LikesIcon"><i class="fas fa-heart LikesIcon-fa-heart">
+                       <%= genre_items.favorites.count %></i>
+                     </span>
+                     <% end %>
                       <% else %>
-                     <%= link_to genre_items.favorites.count, item_favorites_path(genre_items), method: :post, class: "glyphicon glyphicon-heart-empty" %>
+                     <%= link_to item_favorites_path(genre_items), method: :post do %>
+                     <span class="LikesIcon"><i class="far fa-heart LikesIcon-fa-heart">
+                        <%= genre_items.favorites.count %></i>
+                     </span>
+                     <% end %>
                      <% end %>
                  </div>
                </div>
@@ -24,3 +32,4 @@
       </div>
   </div>
 </div>
+<%= javascript_include_tag 'genre.js' %>
