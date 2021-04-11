@@ -57,6 +57,8 @@ class Public::OrdersController < ApplicationController
         else
         	render 'new'
         end
+        orderのconfirmページからcreateアクションでデータをhidden_fieldで送りたいが送れない。
+strong parameterでparams is missingとなっていること。
 	end
     end
   private

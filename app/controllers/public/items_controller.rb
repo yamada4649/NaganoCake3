@@ -5,7 +5,11 @@ class Public::ItemsController < ApplicationController
     @genres = Genre.all
     @items = Item.all
  end
+ def search
+ 	
+ end
  def index
+ 	@genres = Genre.all
  	@items = Item.all
  	
  end

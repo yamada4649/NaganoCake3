@@ -1,23 +1,23 @@
 <div class="container">
 	<div class="row">
-		<div class="top-message col-md-offset-1 col-md-6">
+		<div class="top-message col-md-offset-1 col-md-10">
       <%= flash[:notice] %>
 			<table class="table table-condensed">
          <thead>
                 <tr>
-                <th><strong>マイページ</strong></th>
+                <th><h2><strong style="font-family: 'Kaushan Script', cursive;">My Page</strong></h2></th>
                  </tr>
                  <tr>
-                 	<th>登録情報</th>
+                 	<th><h2><strong style="font-family: 'Kaushan Script', cursive;">登録情報</strong></h2></th>
                     <th>
                  	 <div class="col-xs-12">
-                 	 	<%= link_to '編集する', edit_end_user_path,class: "btn btn-primary col-xs-12" %>
+                 	 	<%= link_to '編集する', edit_end_user_path,class: "btn btn-warning col-xs-12" %>
                      </div>
 
                     </th>
                     <th>
                      <div class="col-xs-12">
-                 	 	<%= link_to 'パスワードを変更する', edit_end_user_password_path,class: "btn btn-primary col-xs-12" %>
+                 	 	<%= link_to 'パスワードを変更する', edit_end_user_password_path,class: "btn btn-warning col-xs-12" %>
 
                      </div>
                     </th>
@@ -25,8 +25,8 @@
                </thead>
                <tbody>
                	<tr>
-               		<td class="title">
-               			氏名
+               		<td class="titl">
+               			<strong>氏名</strong>
                		</td>
                		<td>
                			<%= @end_user.first_name %>
@@ -35,7 +35,7 @@
                		</td>
                	 </tr>
                	 <tr>
-               	 	<td class="title">
+               	 	<td class="titl">
                	 		<strong>カナ</strong>
                	 	</td>
                		<td>
@@ -45,34 +45,26 @@
                		</td>
                	</tr>
                	<tr>
-               		<td class="title">郵便番号</td>
+               		<td class="titl"><strong>郵便番号</strong></td>
                		<td><%= @end_user.postal_code %></td>
                	</tr>
                	<tr>
-               		<td class="title">
-               			住所
+               		<td class="titl">
+               			<strong>住所</strong>
                		</td>
                		<td><%= @end_user.address %></td>
                	</tr>
                	<tr>
-               		<td class="title">電話番号</td>
+               		<td class="titl"><strong>電話番号</strong></td>
                		<td><%= @end_user.phone %></td>
                	</tr>
                	<tr>
-               		<td class="title">メールアドレス</td>
+               		<td class="titl"><strong>メールアドレス</strong></td>
                		<td><%= @end_user.email %></td>
                	</tr>
                	<tr>
-               		<td class="title"><h3>配送先</h3></td>
-               		<td> <%= link_to '一覧を見る',addresses_path, class: "btn btn-primary col-xs-12" %>
-               		</td>
-               	</tr>
-               	<tr>
-               		<td class="title">
-                      <h3>注文履歴</h3>
-               		</td>
-               		<td>
-               			<%= link_to '一覧を見る', class: "btn btn-primary col-xs-12" %>
+               		<td class="titl"><h3><strong>配送先</strong></h3></td>
+               		<td> <%= link_to '一覧を見る',addresses_path, class: "btn btn-warning col-xs-12" %>
                		</td>
                	</tr>
                </tbody>

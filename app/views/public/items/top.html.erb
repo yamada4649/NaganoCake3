@@ -9,14 +9,21 @@
       </div>
 </div>
 <body style="background-color: black; color: white; ">
-  <div class="container">
-  <div class="row" style="margin-top: 100px;">
+  <span class="contents" style="position: absolute; top: 70%;">
+  <h1 style="margin-left: 30px; ">ケーキ検索一覧</h1>
+  <%= text_field_tag :name,'', class: 'js-text_field', placeholder: '検索したいケーキを入力してください' %>
+   <ul class="js-messages">
+    <%= render partial: 'message', collection: @messages %><!-- 部分テンプレートを呼び出し-->
+  </ul>
+</span>
+
+  <div class="container" style="margin-top: 20px;">
+  <div class="row">
     <div class="col-xs-12">
       <div class="sub-picture">
         <div class="table-picture">
-          
         </div>
-       <p class="title" style="text-align: center;"><strong>ジャンルの選択</strong></p>
+       <p class="title" style="text-align: center; font-family: 'Kaushan Script', cursive;"><strong>Select Genre</strong></p>
        <p class="2" style="text-align:center ;"><strong>当店のラインナップはこちら💛</strong></p>
       </div>
        <div class="login-title">
@@ -25,18 +32,23 @@
         <%= link_to 'ログイン',  new_end_user_session_path,class: "btn btn-success" %>
         </div>
        </div>
-       <div class="genres-item" style="text-align: center;">
-         <% @genres.each do |genres| %>
-          <div class= "genre-image"style="display: inline-block; margin-left: 30px;">
-            <%= attachment_image_tag genres, :image, :fill, 300,300 %>
-          <div class="genre-name">
+       <% @genres.each do |genres| %>
+          <div class="genres-item" style="display: inline-block;">
+          <div class= "genre-image" id=<%= "genre__favorite--" + genres.id.to_s %>>
+             <%= link_to genre_path(genres),method: :get do %>
+               <%= attachment_image_tag genres, :image, :fill, 370,370 %>
+             <% end %>
+             <figcaption>
+               <h2>店長おすすめ</h2>
+               <p>Nothing I do is my fault. </p>
+             </figcaption><a href="#"></a>
+          <div class="genre-name" style="text-align: center;">
              <%= genres.name %>
           </div>
           </div>
-          <% end %>
        </div>
-
-    </div>
+         <% end %>
+   </div>
 
     <span id="back">
       <a href="#">

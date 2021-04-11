@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<div class="top-message col-md-offset-1 col-md-6">
+		<div class="top-message col-md-offset-1 col-md-10">
       <%= form_for(@end_user, url: end_user_path(@end_user), method: :patch) do |end_user| %>
 
 			<table class="table">
@@ -16,6 +16,7 @@
                			氏名
                		</td>
                		<td>
+                    <div class="d-flex">
                     <div style="display: inline-block;">
                     <%= end_user.text_field :first_name %>
                     <%= end_user.text_field :last_name %>

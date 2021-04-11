@@ -19,7 +19,8 @@
                 <th style="width:300px;">単価（税込み）</th>
                 <th style="width:300px;">数量</th>
                 <th style="width:300px;">小計</th>
-                <th colspan="1"><%= link_to 'カートを空にする', cart_item_destroy_all_path(@cart_items),class: 'btn btn-danger',method: :delete,"data-confirm" =>"本当に空にしてもよろしいでしょうか?" %></th>
+                <th colspan="1">
+                    <%= link_to 'カートを空にする', cart_item_destroy_all_path(@cart_items),class: 'btn btn-danger',method: :delete,"data-confirm" =>"本当に空にしてもよろしいでしょうか?" %></th>
                 </tr>
               </thead>
 				<tbody>
@@ -27,9 +28,13 @@
                   <% @cart_items.each do |cart_item| %>
                     <tr>
                         <td>
-                            <%= attachment_image_tag cart_item.item,:product_image, size:"100x100", format:"jpeg", fallback: "no_image.jpg" %>
+                            <div style="margin-left: 5px; ">
+                                <% cart_item.item.images.each do |item_image| %>
+                                 <%= attachment_image_tag item_image,:profile_image, size:"150x150", format:"jpeg", fallback: "yakigasi.jpg" %>
+                                 <% end %>
+                            </div>
                             <div>
-                                <strong><%= cart_item.item.name %></strong>
+                                <strong style="font-size: 10px; margin-left: 10px;">商品名:<%= cart_item.item.name %></strong>
                             </div>
                         
                         </td>

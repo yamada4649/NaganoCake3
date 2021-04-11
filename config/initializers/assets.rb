@@ -10,6 +10,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w( fuga.js)
 Rails.application.config.assets.precompile += %w( image.js )
 Rails.application.config.assets.precompile += %w( item.js )
+Rails.application.config.assets.precompile += %w( genre.js )
 
 
 
