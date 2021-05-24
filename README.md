@@ -1,23 +1,26 @@
-# README
+# ケーキ通販サイト
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ケーキを注文できるアプリケーションとなっております。
+実装内容として、顧客のログイン機能、商品登録、カート機能、注文機能の実装を行っています。
+このアプリケーションのポイントとして、複数の商品写真を登録でき、ジャンルから商品を選択することができます。
+また、topページのレイアウトに関して、高級感を出すために、背景を黒色にしています。
 
-Things you may want to cover:
 
-* Ruby version
+アプリケーションの実装機能について:
 
-* System dependencies
+* deviseによるログイン機能
 
-* Configuration
+* refileによる画像機能
 
-* Database creation
+* bootstrapによるレイアウト補正
 
-* Database initialization
+* カート機能の実装
 
-* How to run the test suite
+* 注文機能の実装
 
-* Services (job queues, cache servers, search engines, etc.)
+* namespaceによる顧客側と管理者側の分岐
+
+* アソシエーション関係の実装
 
 * Deployment instructions
 
