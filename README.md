@@ -22,6 +22,6 @@
 
 * アソシエーション関係の実装
 
-* Deployment instructions
+* 商品のいいね実装
 
-* ...
+* 
