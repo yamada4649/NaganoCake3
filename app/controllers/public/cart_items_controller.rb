@@ -12,10 +12,15 @@ class Public::CartItemsController < ApplicationController
         new_amount = cart_item.amount + @cart_item.amount
         cart_item.update_attribute(:amount, new_amount)#条件に一致するレコードを更新してくれるもの。
         @cart_item.delete
+        redirect_to cart_items_path
+      elsif  @cart_item.save
+         redirect_to cart_items_path
+      else
+        redirect_to request.referer
+
       end
+
    end
-    @cart_item.save
-  	redirect_to cart_items_path
 	end
   def destroy
     cart_item = CartItem.find(params[:id])

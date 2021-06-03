@@ -32,6 +32,7 @@
         <li><%= link_to '商品一覧',items_path,class: "glyphicon glyphicon-star" %></li>
         <li><%= link_to 'カート',cart_items_path,class: "glyphicon glyphicon-shopping-cart" %></li>
         <li><%= link_to 'ログアウト',destroy_end_user_session_path,class: "glyphicon glyphicon-remove-sign",method: :delete %></li>
+        <li><%= link_to 'ジャンル選択', root_path, class: "glyphicon glyphicon-search" %></li>
 
         <li></li>
 
@@ -44,8 +45,9 @@
         <% else %>
  　　　　　<li><%= link_to '商品一覧',items_path,class: "glyphicon glyphicon-star"  %></li>
         　<li><%= link_to '新規登録', new_end_user_registration_path,class: "glyphicon glyphicon-home" %></li>
-          <li>
-            <%= link_to 'ログイン',  new_end_user_session_path, class: "glyphicon glyphicon-user" %></li>
+          <li><%= link_to 'ログイン',  new_end_user_session_path, class: "glyphicon glyphicon-user" %></li>
+          <li><%= link_to 'ジャンル選択', root_path,class: "glyphicon glyphicon-search" %></li>
+
 
 
         <% end %>
