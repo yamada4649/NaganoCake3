@@ -14,7 +14,8 @@ class Public::ItemsController < ApplicationController
  	
  end
  def show
- 	@item = Item.find(params[:id])
+ 	@image = Image.find(params[:id])
+ 	@item = Item.find_by(id: params[:id])
  	@cart_item = CartItem.new
  end
  private

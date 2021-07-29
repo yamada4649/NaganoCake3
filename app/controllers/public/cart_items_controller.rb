@@ -2,9 +2,15 @@ class Public::CartItemsController < ApplicationController
 	before_action :cart_item_item?, only: [:create]
 	def index
 	  @cart_items = CartItem.all
+    @image = Array.new
+    @cart_items.each do |cart_item|
+      @item = cart_item.item
+      @image.push(Image.find_by(id: @item.id))
+    end
 	end
 	def create
 		@cart_item = CartItem.new(cart_item_params)#cart_itemにはamountが入ってるitemのshowの次はここに飛ばし、その後はindexページに飛ばす。
+    #@cart_items = current_end_user.cart_items
 		@cart_item.end_user_id = current_end_user.id
 		@cart_items = CartItem.all
 		@cart_items.each do |cart_item|
@@ -12,15 +18,11 @@ class Public::CartItemsController < ApplicationController
         new_amount = cart_item.amount + @cart_item.amount
         cart_item.update_attribute(:amount, new_amount)#条件に一致するレコードを更新してくれるもの。
         @cart_item.delete
-        redirect_to cart_items_path
-      elsif  @cart_item.save
-         redirect_to cart_items_path
-      else
-        redirect_to request.referer
-
       end
+    end
+     @cart_item.save
+     redirect_to cart_items_path
 
-   end
 	end
   def destroy
     cart_item = CartItem.find(params[:id])
