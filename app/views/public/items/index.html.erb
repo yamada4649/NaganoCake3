@@ -9,7 +9,7 @@
        <div id="<%= "item_list_" + images.id.to_s %>">
 
            <div id="img_wrap">
-            <%= link_to item_path(images.item) do %>
+            <%= link_to item_path(images) do %>
             <%= attachment_image_tag images,:profile_image, :fill,300,300, format:"jpg", fallback: "image1.jpg"%>
              <% end %>
            </div>

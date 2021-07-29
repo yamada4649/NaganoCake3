@@ -6,9 +6,7 @@
 				<tbody>
                     <tr>
                       <td class="item-picture">
-                        <% @item.images.each do |item_image| %>
-                         <%= attachment_image_tag item_image, :profile_image, :fill, 400,400,format:"jpeg", fallback:"no_image.jpg" %>
-                        <% end %>
+                         <%= attachment_image_tag @image, :profile_image, :fill, 400,400,format:"jpeg", fallback:"no_image.jpg" %>
                       </td>
 
                       <td>
